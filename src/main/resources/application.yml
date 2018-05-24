@@ -1,0 +1,40 @@
+spring:
+  data:
+    elasticsearch:
+      cluster-nodes: localhost:9300
+    mongodb:
+      database: log-4-network-collage
+      port: 27017
+      host: 127.0.0.1
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      cors:
+        allowed-origins: "*"
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    shutdown:
+      enabled: false
+kafka:
+  topic:
+    name: log-4-network-collage
+logging:
+  level:
+    com: debug
+info:
+  hi: "dfg什么鬼"
+
