@@ -31,9 +31,6 @@ management:
   endpoint:
     shutdown:
       enabled: false
-kafka:
-  topic:
-    name: log-4-network-collage
 logging:
   level:
     com: debug

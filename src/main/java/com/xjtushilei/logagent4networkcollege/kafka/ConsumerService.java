@@ -9,7 +9,10 @@ import com.xjtushilei.logagent4networkcollege.repository.VisitLogElasticsearchRe
 import com.xjtushilei.logagent4networkcollege.repository.VisitLogMongoRepository;
 import com.xjtushilei.logagent4networkcollege.utils.JsonUtils;
 import eu.bitwalker.useragentutils.UserAgent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConsumerService {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public VisitLogMongoRepository visitLogMongoRepository;
@@ -30,29 +34,35 @@ public class ConsumerService {
     public ActionLogMongoRepository actionLogMongoRepository;
 
 
-    //    @KafkaListener(topics = "${kafka.topic.name}",groupId="mongodb")
+    @KafkaListener(topics = "visit", groupId = "mongodb")
     public void processVisitLogMessageByMongo(String message) {
         VisitLog visitLog = JsonUtils.toObject(message, VisitLog.class);
         praseVisitLog(visitLog);
         visitLogMongoRepository.save(visitLog);
-
+        log.debug("visit-mongo-消费--->"+visitLog);
     }
 
+    @KafkaListener(topics = "visit", groupId = "elasticsearch")
     public void processVisitLogMessageByElasticSearch(String message) {
         VisitLog visitLog = JsonUtils.toObject(message, VisitLog.class);
         praseVisitLog(visitLog);
         visitLogElasticsearchRepository.save(visitLog);
+        log.debug("visit-elasticsearch-消费--->"+visitLog);
 
     }
 
+    @KafkaListener(topics = "action", groupId = "mongodb")
     public void processActionLogMessageByMongo(String message) {
         ActionLog actionLog = JsonUtils.toObject(message, ActionLog.class);
         actionLogMongoRepository.save(actionLog);
+        log.debug("action-mongodb-消费--->"+actionLog);
     }
 
+    @KafkaListener(topics = "action", groupId = "elasticsearch")
     public void processActionLogMessageByElasticSearch(String message) {
         ActionLog actionLog = JsonUtils.toObject(message, ActionLog.class);
         actionLogElasticsearchRepository.save(actionLog);
+        log.debug("action-elasticsearch-消费--->"+actionLog);
     }
 
     private void praseVisitLog(VisitLog visitLog) {

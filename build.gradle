@@ -33,7 +33,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-devtools')
-//	compile('org.springframework.kafka:spring-kafka')
+	compile('org.springframework.kafka:spring-kafka')
 
 	// https://github.com/HaraldWalker/user-agent-utils
 	compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'

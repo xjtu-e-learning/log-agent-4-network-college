@@ -3,6 +3,7 @@ package com.xjtushilei.logagent4networkcollege.controller;
 import com.xjtushilei.logagent4networkcollege.entity.ActionLog;
 import com.xjtushilei.logagent4networkcollege.entity.VisitLog;
 import com.xjtushilei.logagent4networkcollege.kafka.ConsumerService;
+import com.xjtushilei.logagent4networkcollege.kafka.ProducerService;
 import com.xjtushilei.logagent4networkcollege.utils.IpUtil;
 import com.xjtushilei.logagent4networkcollege.utils.JsonUtils;
 import org.slf4j.Logger;
@@ -24,10 +25,11 @@ import java.util.Random;
 @CrossOrigin
 public class PostLogController {
 
-    private Logger log = LoggerFactory.getLogger(PostLogController.class);
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private ConsumerService consumerService;
+    ProducerService producerService;
+
 
     @GetMapping("/hi")
     public String hi(){
@@ -44,8 +46,9 @@ public class PostLogController {
 
         log.debug(visitLog.toString());
         String json = JsonUtils.toJson(visitLog);
-        consumerService.processVisitLogMessageByMongo(json);
-        consumerService.processVisitLogMessageByElasticSearch(json);
+        producerService.send("visit", json);
+//        consumerService.processVisitLogMessageByMongo(json);
+//        consumerService.processVisitLogMessageByElasticSearch(json);
         return "visit log put success.";
     }
 
@@ -57,8 +60,9 @@ public class PostLogController {
 
         log.debug(actionLog.toString());
         String json = JsonUtils.toJson(actionLog);
-        consumerService.processActionLogMessageByElasticSearch(json);
-        consumerService.processActionLogMessageByMongo(json);
+        producerService.send("action", json);
+//        consumerService.processActionLogMessageByElasticSearch(json);
+//        consumerService.processActionLogMessageByMongo(json);
         return "action log put success.";
     }
 

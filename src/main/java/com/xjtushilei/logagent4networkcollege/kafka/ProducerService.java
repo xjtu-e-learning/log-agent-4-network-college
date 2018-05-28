@@ -1,28 +1,28 @@
-//package com.xjtushilei.logagent4networkcollege.kafka;
-//
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.kafka.core.KafkaTemplate;
-//import org.springframework.stereotype.Component;
-//
-///**
-// * @author scriptshi
-// * 2018/5/23
-// */
-//@Component
-//public class Producer {
-//
-//    @Value("${kafka.topic.name}")
-//    String topicName;
-//
-//    private final KafkaTemplate kafkaTemplate;
-//
-//    Producer(KafkaTemplate kafkaTemplate) {
-//        this.kafkaTemplate = kafkaTemplate;
-//    }
-//
-//    public void send(String message) {
-//        this.kafkaTemplate.send(topicName, message);
-//        System.out.println("Send message [" + message + "]");
-//    }
-//
-//}
+package com.xjtushilei.logagent4networkcollege.kafka;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author scriptshi
+ * 2018/5/23
+ */
+@Component
+public class ProducerService {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
+
+    private final KafkaTemplate kafkaTemplate;
+
+    ProducerService(KafkaTemplate kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    public void send(String topicName, String message) {
+        this.kafkaTemplate.send(topicName, message);
+        log.debug("生产者成功：topic：["+topicName+"] message："+message);
+    }
+
+}
