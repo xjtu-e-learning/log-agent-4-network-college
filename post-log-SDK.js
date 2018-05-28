@@ -40,7 +40,7 @@ function post_log_of_visit() {
  * 传输用户行为日志
  * @param studentCode 学生id
  * @param pageKind 当前所在页面(学习页面，知识森林页面，未知)
- * @param actionType 行为分类（点击-1级分面，点击-2级分面，点击-主题，点击-碎片）
+ * @param actionType 行为分类（点击-1级分面，点击-2级分面，点击-主题，点击-碎片，跳转）
  * @param courseId 课程id
  * @param courseName 课程名字
  * @param topicName 主题名字
@@ -97,6 +97,9 @@ function post_log_of_action(studentCode, pageKind, actionType,
             break;
         case "点击-碎片":
             params.operationId=4;
+            break;
+        case "跳转":
+            params.operationId=5;
             break;
         default:
             //未知
