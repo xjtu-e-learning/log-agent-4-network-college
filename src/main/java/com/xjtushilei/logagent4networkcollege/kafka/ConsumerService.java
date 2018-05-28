@@ -20,21 +20,21 @@ import org.springframework.stereotype.Component;
 public class ConsumerService {
 
     @Autowired
-    VisitLogMongoRepository visitLogRepository;
+    public VisitLogMongoRepository visitLogMongoRepository;
     @Autowired
-    VisitLogElasticsearchRepository visitLogElasticsearchRepository;
+    public VisitLogElasticsearchRepository visitLogElasticsearchRepository;
 
     @Autowired
-    ActionLogElasticsearchRepository actionLogElasticsearchRepository;
+    public ActionLogElasticsearchRepository actionLogElasticsearchRepository;
     @Autowired
-    ActionLogMongoRepository actionLogMongoRepository;
+    public ActionLogMongoRepository actionLogMongoRepository;
 
 
     //    @KafkaListener(topics = "${kafka.topic.name}",groupId="mongodb")
     public void processVisitLogMessageByMongo(String message) {
         VisitLog visitLog = JsonUtils.toObject(message, VisitLog.class);
         praseVisitLog(visitLog);
-        visitLogRepository.save(visitLog);
+        visitLogMongoRepository.save(visitLog);
 
     }
 
@@ -44,6 +44,7 @@ public class ConsumerService {
         visitLogElasticsearchRepository.save(visitLog);
 
     }
+
     public void processActionLogMessageByMongo(String message) {
         ActionLog actionLog = JsonUtils.toObject(message, ActionLog.class);
         actionLogMongoRepository.save(actionLog);
@@ -54,7 +55,7 @@ public class ConsumerService {
         actionLogElasticsearchRepository.save(actionLog);
     }
 
-    private void praseVisitLog(VisitLog visitLog){
+    private void praseVisitLog(VisitLog visitLog) {
         UserAgent userAgent = UserAgent.parseUserAgentString(visitLog.getUserAgent());
         //设置用户浏览器相关设备参数
         visitLog.setBrowserType(userAgent.getBrowser().getBrowserType().getName());

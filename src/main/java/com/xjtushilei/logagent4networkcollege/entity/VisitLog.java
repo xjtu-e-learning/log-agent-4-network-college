@@ -1,6 +1,8 @@
 package com.xjtushilei.logagent4networkcollege.entity;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
@@ -12,29 +14,49 @@ import java.util.Date;
 public class VisitLog {
 
     private String id;
+    @Field(type = FieldType.Keyword)
     private String country;
+    @Field(type = FieldType.Keyword)
     private String province;
+    @Field(type = FieldType.Keyword)
     private String city;
+    @Field(type = FieldType.Keyword)
     private String district;
+    @Field(type = FieldType.Keyword)
     private String domain;
+
     private String url;
+    @Field(type = FieldType.Keyword)
     private String title;
+    @Field(type = FieldType.Keyword)
     private String referrer;
     private int sh;  //用户屏幕分辨率-高
     private int sw;  //用户屏幕分辨率-宽
     private int cd;  //用户屏幕颜色深度
+    @Field(type = FieldType.Keyword)
     private String lang;  //用户客户端语言
+    @Field(type = FieldType.Ip)
     private String ip;
     private String userAgent;
+    @Field(type = FieldType.Date)
     private Date date;
+    @Field(type = FieldType.Keyword)
     private String browserType;
+    @Field(type = FieldType.Keyword)
     private String browserRenderingEngine;
+    @Field(type = FieldType.Keyword)
     private String browserManufacturer;
+    @Field(type = FieldType.Keyword)
     private String browserVersion;
+    @Field(type = FieldType.Keyword)
     private String operatingSystemDeviceType;
+    @Field(type = FieldType.Keyword)
     private String operatingSystemManufacturer;
+    @Field(type = FieldType.Keyword)
     private String operatingSystemName;
+    @Field(type = FieldType.Keyword)
     private String courseId;
+    @Field(type = FieldType.Keyword)
     private String studentId;
 
     public String getCourseId() {
@@ -140,7 +162,6 @@ public class VisitLog {
         this.date = date;
 
     }
-
 
 
     public String getCountry() {

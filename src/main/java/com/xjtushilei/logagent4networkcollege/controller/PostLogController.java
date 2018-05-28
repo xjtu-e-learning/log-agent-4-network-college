@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -56,8 +57,9 @@ public class PostLogController {
 
         log.debug(actionLog.toString());
         String json = JsonUtils.toJson(actionLog);
-        consumerService.processVisitLogMessageByMongo(json);
-        consumerService.processVisitLogMessageByElasticSearch(json);
-        return "visit log put success.";
+        consumerService.processActionLogMessageByElasticSearch(json);
+        consumerService.processActionLogMessageByMongo(json);
+        return "action log put success.";
     }
+
 }
