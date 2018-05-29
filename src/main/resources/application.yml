@@ -8,6 +8,7 @@ spring:
       database: log-4-network-collage
       port: 27017
       host: 127.0.0.1
+      username: root
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -35,6 +36,49 @@ logging:
   level:
     com: debug
 info:
-  hi: "dfg什么鬼"
+  log:
+    action:
+      note: 记录用户的行为日志的集合
+      field_description:
+        user_id: 学生id
+        operationSourceId: "当前所在页面(编号含义：未知--0，学习页面--1，知识森林页面--2)"
+        operationId: "行为分类（编号含义：未知--0，点击-主题--1,点击-1级分面--2，点击-2级分面--3，点击-碎片--4，跳转--5）"
+        courseId: 课程id
+        courseName: 课程名字
+        topicName: 主题名字
+        topicId: 主题id
+        facetNameLevel1Name: 1级分面名字
+        facetNameLevel1Id: 1级分面id
+        facetNameLevel2Name: 2级分面名字
+        facetNameLevel2Id: 2级分面id
+        fragmentId: 碎片id
+        jumpTargetType: "跳转url类型（编号含义：未知--0，内部文件--1，内部视频--2，本系统链接--3，外部网页链接--4）"
+        umpTargetUrl: 跳转url
+        date: 服务器记录时间
+    visit:
+      note: 记录用户流量日志的集合
+      field_description:
+        country: 国家
+        province: 省
+        city: 市
+        district: 地区
+        domain: 域名
+        lang: 语言
+        referrer: 来源
+        sh: 高
+        sw: 宽
+        cd: 颜色深度
+        title: 标题
+        url: 网页请求连接
+        date: 服务器记录时间
+        ip: 用户访问IP
+        userAgent: 用户浏览器标识
+        browserManufacturer: 用户浏览器厂家
+        browserRenderingEngine: 用户浏览器渲染引擎
+        browserType: 用户浏览器类型
+        browserVersion: 用户浏览器版本
+        operatingSystemDeviceType: 用户操作系统类型
+        operatingSystemManufacturer: 用户操作系统厂家
+        operatingSystemName: 用户操作系统名字
 
 

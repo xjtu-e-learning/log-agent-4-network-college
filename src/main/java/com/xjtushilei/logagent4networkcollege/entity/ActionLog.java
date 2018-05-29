@@ -1,6 +1,8 @@
 package com.xjtushilei.logagent4networkcollege.entity;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
@@ -12,17 +14,23 @@ import java.util.Date;
 public class ActionLog {
 
     private String id;
+    @Field(type = FieldType.Keyword)
     private String user_id;
     private int operationSourceId;
     private int operationId;
+    @Field(type = FieldType.Keyword)
     private String courseId;
     private String courseName;
     private String topicName;
+    @Field(type = FieldType.Keyword)
     private String topicId;
     private String facetNameLevel1Name;
+    @Field(type = FieldType.Keyword)
     private String facetNameLevel1Id;
     private String facetNameLevel2Name;
+    @Field(type = FieldType.Keyword)
     private String facetNameLevel2Id;
+    @Field(type = FieldType.Keyword)
     private String fragmentId;
     private Date date;
     private int jumpTargetType;
