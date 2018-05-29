@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: log-4-network-collage
+      port: 27007
+      host: 127.0.0.1
+      username: root
+      authentication-database: admin
