@@ -2,6 +2,7 @@
  * 记录访客日志
  */
 function post_log_of_visit() {
+    check_load_jquery()
     var params = {};
     if (remote_ip_info['ret'] == 1) {
         params.country = remote_ip_info['country'];
@@ -23,7 +24,7 @@ function post_log_of_visit() {
     if (navigator) {
         params.lang = navigator.language || '';
     }
-    console.log(params)
+    // console.log(params)
     $.ajax({
         url: log_server_url + '/log/visit',
         type: 'POST',
@@ -54,9 +55,10 @@ function post_log_of_visit() {
  * @param jumpTargetUrl 跳转url
  */
 function post_log_of_action(studentCode, pageKind, actionType,
-                            courseId, courseName, topicName,topicId,
-                            facetNameLevel1Name, facetNameLevel1Id,facetNameLevel2Name, facetNameLevel2Id,
+                            courseId, courseName, topicName, topicId,
+                            facetNameLevel1Name, facetNameLevel1Id, facetNameLevel2Name, facetNameLevel2Id,
                             fragmentId, jumpTargetType, jumpTargetUrl) {
+    check_load_jquery()
     var params = {};
     params.user_id = studentCode;
     params.operationSourceId = pageKind;
@@ -72,57 +74,54 @@ function post_log_of_action(studentCode, pageKind, actionType,
     params.fragmentId = fragmentId;
     params.jumpTargetType = jumpTargetType;
     params.jumpTargetUrl = jumpTargetUrl;
-    switch(params.operationSourceId)
-    {
+    switch (params.operationSourceId) {
         case "学习页面":
-            params.operationSourceId=1;
+            params.operationSourceId = 1;
             break;
         case "知识森林页面":
-            params.operationSourceId=2;
+            params.operationSourceId = 2;
             break;
         default:
             //未知
-            params.operationSourceId=0;
+            params.operationSourceId = 0;
     }
-    switch(params.operationId)
-    {
+    switch (params.operationId) {
         case "点击-主题":
-            params.operationId=1;
+            params.operationId = 1;
             break;
         case "点击-1级分面":
-            params.operationId=2;
+            params.operationId = 2;
             break;
         case "点击-2级分面":
-            params.operationId=3;
+            params.operationId = 3;
             break;
         case "点击-碎片":
-            params.operationId=4;
+            params.operationId = 4;
             break;
         case "跳转":
-            params.operationId=5;
+            params.operationId = 5;
             break;
         default:
             //未知
-            params.operationId=0;
+            params.operationId = 0;
     }
-    switch(params.jumpTargetType)
-        {
-            case "内部文件":
-                params.jumpTargetType=1;
-                break;
-            case "内部视频":
-                params.jumpTargetType=2;
-                break;
-            case "本系统链接":
-                params.jumpTargetType=3;
-                break;
-            case "外部网页链接":
-                params.jumpTargetType=4;
-                break;
-            default:
-                //未知
-                params.jumpTargetType=0;
-        }
+    switch (params.jumpTargetType) {
+        case "内部文件":
+            params.jumpTargetType = 1;
+            break;
+        case "内部视频":
+            params.jumpTargetType = 2;
+            break;
+        case "本系统链接":
+            params.jumpTargetType = 3;
+            break;
+        case "外部网页链接":
+            params.jumpTargetType = 4;
+            break;
+        default:
+            //未知
+            params.jumpTargetType = 0;
+    }
     // console.log(JSON.stringify(params))
     $.ajax({
         url: log_server_url + "/log/action",
@@ -134,4 +133,13 @@ function post_log_of_action(studentCode, pageKind, actionType,
             console.log(data);
         }
     });
+}
+
+/**
+ * 判断是否已经加载jquery
+ */
+function check_load_jquery() {
+    if (typeof jQuery === 'undefined') {
+        alert("jQuery library is not found!");
+    }
 }
