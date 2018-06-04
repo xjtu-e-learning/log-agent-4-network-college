@@ -1,5 +1,7 @@
 # 权限认证，用逗号隔开，域名白名单
 referrer-auth: 127.0.0.1,localhost,yotta.xjtushilei.com,47.95.145.72
+# 是否开启认证，开发时候可以去掉认证
+referrer-auth-status: true
 server:
   port: 8090
 spring:

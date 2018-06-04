@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: log-4-network-collage
+      port: 27017
+      host: 127.0.0.1

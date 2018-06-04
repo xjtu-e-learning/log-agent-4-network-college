@@ -33,6 +33,9 @@ public class PostLogController {
     @Value("${referrer-auth}")
     String[] referrerAuth;
 
+    @Value("${referrer-auth-status}")
+    boolean referrerAuthStatus;
+
 
     @GetMapping("/hi")
     public String hi() {
@@ -42,37 +45,33 @@ public class PostLogController {
     @PostMapping("/visit")
     public String visit(@RequestBody VisitLog visitLog, HttpServletRequest request) {
         String referrer = request.getHeader("Verification-referrer");
-        if (Arrays.asList(referrerAuth).parallelStream().anyMatch(referrer::contains)) {
-            visitLog.setIp(IpUtil.getIpAddr(request));
-            visitLog.setUserAgent(request.getHeader("User-Agent"));
-
-            visitLog.setDate(new Date());
-
-            log.debug(visitLog.toString());
-            String json = JsonUtils.toJson(visitLog);
-            producerService.send("visit", json);
-//        consumerService.processVisitLogMessageByMongo(json);
-//        consumerService.processVisitLogMessageByElasticSearch(json);
-            return "visit log put success.";
-        } else {
+        if (referrerAuthStatus && !Arrays.asList(referrerAuth).parallelStream().anyMatch(referrer::contains)) {
             return "visit log put failure. Authority authentication failure";
         }
+        visitLog.setIp(IpUtil.getIpAddr(request));
+        visitLog.setUserAgent(request.getHeader("User-Agent"));
+        visitLog.setDate(new Date());
+        log.debug(visitLog.toString());
+        String json = JsonUtils.toJson(visitLog);
+        producerService.send("visit", json);
+//        consumerService.processVisitLogMessageByMongo(json);
+//        consumerService.processVisitLogMessageByElasticSearch(json);
+        return "visit log put success.";
     }
 
     @PostMapping("/action")
     public String action(@RequestBody ActionLog actionLog, HttpServletRequest request) {
         String referrer = request.getHeader("Verification-referrer");
-        if (Arrays.asList(referrerAuth).parallelStream().anyMatch(referrer::contains)) {
-            actionLog.setDate(new Date());
-            log.debug(actionLog.toString());
-            String json = JsonUtils.toJson(actionLog);
-            producerService.send("action", json);
-//        consumerService.processActionLogMessageByElasticSearch(json);
-//        consumerService.processActionLogMessageByMongo(json);
-            return "action log put success.";
-        } else {
+        if (referrerAuthStatus && !Arrays.asList(referrerAuth).parallelStream().anyMatch(referrer::contains)) {
             return "action log put failure. Authority authentication failure";
         }
+        actionLog.setDate(new Date());
+        log.debug(actionLog.toString());
+        String json = JsonUtils.toJson(actionLog);
+        producerService.send("action", json);
+//        consumerService.processActionLogMessageByElasticSearch(json);
+//        consumerService.processActionLogMessageByMongo(json);
+        return "action log put success.";
 
     }
 
