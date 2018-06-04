@@ -3,8 +3,19 @@
 <head>
     <title>123</title>
     <meta charset="utf-8">
+    <script type="text/javascript">
+        (function () {
+            var trust = ["localhost", "127.0.0.1", "yotta.xjtushilei.com", "47.95.145.72"];
+            var referrer = document.referrer;
+            var sign = "://";
+            var pos = referrer.indexOf(sign) + sign.length;
+            referrer = referrer.slice(pos).split("/")[0];
+            if (trust.join("-").indexOf(referrer) === -1 || referrer === null || referrer === "") window.location.href = 'http://www.xjtudlc.com';
+        })();
+    </script>
 </head>
 <body>
+
 <h1>这是一个日志收集的测试页面~</h1>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
@@ -30,26 +41,26 @@
             "16", "编译原理", "主题名字", "主题id",
             null, null, null, null,
             null, null, null)
-        //点击1级分面
-        post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-1级分面",
-            "16", "编译原理", "主题名字", "主题id",
-            "1级分面名字", "1级分面id", null, null,
-            null, null, null)
-        //点击2级分面
-        post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-2级分面",
-            "16", "编译原理", "主题名字", "主题id",
-            "1级分面名字", "1级分面id","2级分面名字", "2级分面id",
-            null, null, null)
-        //点击碎片
-        post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-碎片",
-            "16", "编译原理", "主题名字", "主题id",
-            "1级分面名字", "1级分面id","2级分面名字", "2级分面id",
-            "碎片id", null, null)
-        //跳转（跳转url类型（内部文件，内部视频，外部网页链接，本系统链接））
-        post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "跳转",
-            "16", "编译原理", null, null,
-            null, null, null, null,
-            null, "外部网页链接", "http://www.baidu.com")
+        // //点击1级分面
+        // post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-1级分面",
+        //     "16", "编译原理", "主题名字", "主题id",
+        //     "1级分面名字", "1级分面id", null, null,
+        //     null, null, null)
+        // //点击2级分面
+        // post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-2级分面",
+        //     "16", "编译原理", "主题名字", "主题id",
+        //     "1级分面名字", "1级分面id", "2级分面名字", "2级分面id",
+        //     null, null, null)
+        // //点击碎片
+        // post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-碎片",
+        //     "16", "编译原理", "主题名字", "主题id",
+        //     "1级分面名字", "1级分面id", "2级分面名字", "2级分面id",
+        //     "碎片id", null, null)
+        // //跳转（跳转url类型（内部文件，内部视频，外部网页链接，本系统链接））
+        // post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "跳转",
+        //     "16", "编译原理", null, null,
+        //     null, null, null, null,
+        //     null, "外部网页链接", "http://www.baidu.com")
 
     }
 </script>
