@@ -54,7 +54,7 @@ info:
         facetNameLevel2Id: 2级分面id
         fragmentId: 碎片id
         jumpTargetType: "跳转url类型（编号含义：未知--0，内部文件--1，内部视频--2，本系统链接--3，外部网页链接--4）"
-        umpTargetUrl: 跳转url
+        jumpTargetUrl: 跳转url
         date: 服务器记录时间
     visit:
       note: 记录用户流量日志的集合
