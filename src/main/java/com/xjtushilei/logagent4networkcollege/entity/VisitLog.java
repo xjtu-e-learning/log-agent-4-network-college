@@ -10,7 +10,7 @@ import java.util.Date;
  * @author scriptshi
  * 2018/5/24
  */
-@Document(type = "log-4-network-collage", indexName = "visit-log", shards = 1, replicas = 0)
+@Document(type = "log-4-network-collage", indexName = "visit-log", shards = 5, replicas = 0)
 public class VisitLog {
 
     private String id;

@@ -20,6 +20,7 @@ public class ProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    @SuppressWarnings("unchecked")
     public void send(String topicName, String message) {
         this.kafkaTemplate.send(topicName, message);
         log.debug("生产者成功：topic：["+topicName+"] message："+message);
