@@ -32,6 +32,7 @@ public class ActionLog {
     private String facetNameLevel2Id;
     @Field(type = FieldType.Keyword)
     private String fragmentId;
+    @Field(type = FieldType.Date)
     private Date date;
     private int jumpTargetType;
     private String jumpTargetUrl;
