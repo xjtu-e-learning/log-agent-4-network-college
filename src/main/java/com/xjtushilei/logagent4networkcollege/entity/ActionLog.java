@@ -18,23 +18,62 @@ public class ActionLog {
     private String user_id;
     private int operationSourceId;
     private int operationId;
+
     @Field(type = FieldType.Keyword)
     private String courseId;
+
     private String courseName;
     private String topicName;
+
+    /*
+    主题id
+     */
     @Field(type = FieldType.Keyword)
     private String topicId;
+
     private String facetNameLevel1Name;
+
+    /*
+    1级分面id
+     */
     @Field(type = FieldType.Keyword)
     private String facetNameLevel1Id;
+
     private String facetNameLevel2Name;
+
+    /*
+    2级分面id
+    */
     @Field(type = FieldType.Keyword)
     private String facetNameLevel2Id;
+
+    /*
+    碎片id
+    */
     @Field(type = FieldType.Keyword)
     private String fragmentId;
+
+    /*
+    日志插入时间
+     */
     @Field(type = FieldType.Date)
     private Date date;
+
+    /*
+    推荐路径类型
+     */
+    @Field(type = FieldType.Keyword)
+    private String recommendationMethod;
+
+
+    /*
+    跳转类型
+     */
     private int jumpTargetType;
+
+    /*
+    跳转url
+     */
     private String jumpTargetUrl;
 
     public ActionLog() {
@@ -60,6 +99,14 @@ public class ActionLog {
                 ", jumpTargetType=" + jumpTargetType +
                 ", jumpTargetUrl='" + jumpTargetUrl + '\'' +
                 '}';
+    }
+
+    public String getRecommendationMethod() {
+        return recommendationMethod;
+    }
+
+    public void setRecommendationMethod(String recommendationMethod) {
+        this.recommendationMethod = recommendationMethod;
     }
 
     public String getId() {

@@ -13,33 +13,93 @@ import java.util.Date;
 @Document(type = "log-4-network-collage", indexName = "visit-log", shards = 5, replicas = 0)
 public class VisitLog {
 
+    /*
+     * id
+     * 因es的springboot有bug，必须要这个字段，其实没啥用
+     */
     private String id;
+    /*
+    课程id
+     */
+    @Field(type = FieldType.Keyword)
+    private String courseId;
+
+    /*
+    学生id
+     */
+    @Field(type = FieldType.Keyword)
+    private String studentId;
+    /*
+    国家
+     */
     @Field(type = FieldType.Keyword)
     private String country;
+
+    /*
+    省
+     */
     @Field(type = FieldType.Keyword)
     private String province;
+
+    /*
+    市
+     */
     @Field(type = FieldType.Keyword)
     private String city;
+
+    /*
+    区
+     */
     @Field(type = FieldType.Keyword)
     private String district;
+
+    /*
+    域名
+     */
     @Field(type = FieldType.Keyword)
     private String domain;
-
+    /*
+    网址
+     */
     private String url;
+
+    /*
+    网页标题
+     */
     @Field(type = FieldType.Keyword)
     private String title;
+
     @Field(type = FieldType.Keyword)
     private String referrer;
-    private int sh;  //用户屏幕分辨率-高
-    private int sw;  //用户屏幕分辨率-宽
-    private int cd;  //用户屏幕颜色深度
+    /*
+    用户屏幕分辨率-高
+     */
+    private int sh;
+    /*
+    用户屏幕分辨率-宽
+     */
+    private int sw;
+    /*
+    用户屏幕颜色深度
+     */
+    private int cd;
     @Field(type = FieldType.Keyword)
-    private String lang;  //用户客户端语言
+    /*
+    用户客户端语言
+     */
+    private String lang;
+
     @Field(type = FieldType.Ip)
     private String ip;
+
     private String userAgent;
+
+    /*
+    插入时间
+     */
     @Field(type = FieldType.Date)
     private Date date;
+
     @Field(type = FieldType.Keyword)
     private String browserType;
     @Field(type = FieldType.Keyword)
@@ -54,10 +114,7 @@ public class VisitLog {
     private String operatingSystemManufacturer;
     @Field(type = FieldType.Keyword)
     private String operatingSystemName;
-    @Field(type = FieldType.Keyword)
-    private String courseId;
-    @Field(type = FieldType.Keyword)
-    private String studentId;
+
 
     public String getCourseId() {
         return courseId;

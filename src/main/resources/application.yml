@@ -47,7 +47,7 @@ info:
       field_description:
         user_id: 学生id
         operationSourceId: "当前所在页面(编号含义：未知--0，学习页面--1，知识森林页面--2)"
-        operationId: "行为分类（编号含义：未知--0，点击-主题--1,点击-1级分面--2，点击-2级分面--3，点击-碎片--4，跳转--5,点击推荐类型--6）"
+        operationId: "行为分类（编号含义：未知--0，点击-主题--1,点击-1级分面--2，点击-2级分面--3，点击-碎片--4，跳转--5,点击推荐路径类型--6,点击鸟瞰图--7）"
         courseId: 课程id
         courseName: 课程名字
         topicName: 主题名字
@@ -60,6 +60,7 @@ info:
         jumpTargetType: "跳转url类型（编号含义：未知--0，内部文件--1，内部视频--2，本系统链接--3，外部网页链接--4）"
         jumpTargetUrl: 跳转url
         date: 服务器记录时间
+        recommendationMethod: 推荐路径类型
     visit:
       note: 记录用户流量日志的集合
       field_description:
