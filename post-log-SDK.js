@@ -104,6 +104,12 @@ function post_log_of_action(studentCode, pageKind, actionType,
         case "跳转":
             params.operationId = 5;
             break;
+        case "点击推荐路径类型":
+            params.operationId = 6;
+            break;
+        case "点击鸟瞰图":
+            params.operationId = 7;
+            break;
         default:
             //未知
             params.operationId = 0;
