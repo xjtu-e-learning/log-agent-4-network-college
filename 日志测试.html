@@ -27,8 +27,8 @@
         charset="utf-8"></script>
 <script type="text/javascript" src="post-log-SDK.js"></script>
 <script type="text/javascript" charset="utf-8" async>
-    var log_server_url = "http://yotta.xjtushilei.com:8090" //该声明可以在调用sdk中两个函数之前的任意位置！！！
-    // var log_server_url = "http://localhost:8090" //该声明可以在调用sdk中两个函数之前的任意位置！！！
+    // var log_server_url = "http://yotta.xjtushilei.com:8090" //该声明可以在调用sdk中两个函数之前的任意位置！！！
+    var log_server_url = "http://localhost:8090" //该声明可以在调用sdk中两个函数之前的任意位置！！！
     post_log_of_visit();
 </script>
 <!-- 日志收集----请确保：自己写的js文件在此位置之后，保证post_log_of_action()函数之前被浏览器加载！！！ -->
@@ -41,17 +41,17 @@
         post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-主题",
             "16", "编译原理", "主题名字", "主题id",
             null, null, null, null,
-            null, null, null)
+            null, null, null, null)
         //点击1级分面
         post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-1级分面",
             "16", "编译原理", "主题名字", "主题id",
             "1级分面名字", "1级分面id", null, null,
-            null, null, null)
+            null, null, null, null)
         //点击2级分面
         post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-2级分面",
             "16", "编译原理", "主题名字", "主题id",
             "1级分面名字", "1级分面id", "2级分面名字", "2级分面id",
-            null, null, null)
+            null, null, null, null)
         //点击碎片
         post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "点击-碎片",
             "16", "编译原理", "主题名字", "主题id",
@@ -61,7 +61,7 @@
         post_log_of_action("studentCode", "知识森林页面--还是？-学习页面", "跳转",
             "16", "编译原理", null, null,
             null, null, null, null,
-            null, "外部网页链接", "http://www.baidu.com")
+            null, "外部网页链接", "http://www.baidu.com", null)
 
     }
 </script>
