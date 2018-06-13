@@ -1,12 +1,43 @@
 package com.xjtushilei.logagent4networkcollege.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.xjtushilei.logagent4networkcollege.entity.VisitLog;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @author scriptshi
  * 2018/5/24
  */
 public class IpUtil {
+
+    private static OkHttpClient okHttpClient = new OkHttpClient();
+
+
+    public static void setIPinfo(VisitLog visitLog) {
+
+
+        try {
+            Request request = new Request.Builder()
+                    .url("http://ip.taobao.com/service/getIpInfo2.php?ip=" + visitLog.getIp())
+                    .build();
+            Response response = okHttpClient.newCall(request).execute();
+            String bodyString = response.body().string();
+            JSONObject data = JSON.parseObject(bodyString).getJSONObject("data");
+            visitLog.setCity(data.getString("city"));
+            visitLog.setCountry(data.getString("country"));
+            visitLog.setProvince(data.getString("region"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
         try {
@@ -33,5 +64,22 @@ public class IpUtil {
         // ipAddress = this.getRequest().getRemoteAddr();
 
         return ipAddress;
+    }
+
+    public static void main(String[] args) {
+        String ip = "123.206.50.198";
+        try {
+            Request request = new Request.Builder()
+                    .url("http://ip.taobao.com/service/getIpInfo2.php?ip=" + ip)
+                    .build();
+            Response response = okHttpClient.newCall(request).execute();
+            String bodyString = response.body().string();
+            JSONObject data = JSON.parseObject(bodyString).getJSONObject("data");
+            System.out.println(data.getString("city"));
+            System.out.println(data.getString("country"));
+            System.out.println(data.getString("region"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

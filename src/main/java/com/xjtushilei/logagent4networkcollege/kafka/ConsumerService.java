@@ -7,6 +7,7 @@ import com.xjtushilei.logagent4networkcollege.repository.ActionLogElasticsearchR
 import com.xjtushilei.logagent4networkcollege.repository.ActionLogMongoRepository;
 import com.xjtushilei.logagent4networkcollege.repository.VisitLogElasticsearchRepository;
 import com.xjtushilei.logagent4networkcollege.repository.VisitLogMongoRepository;
+import com.xjtushilei.logagent4networkcollege.utils.IpUtil;
 import com.xjtushilei.logagent4networkcollege.utils.JsonUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
@@ -66,6 +67,9 @@ public class ConsumerService {
     }
 
     private void praseVisitLog(VisitLog visitLog) {
+        //设置ip相关参数
+        IpUtil.setIPinfo(visitLog);
+
         UserAgent userAgent = UserAgent.parseUserAgentString(visitLog.getUserAgent());
         //设置用户浏览器相关设备参数
         visitLog.setBrowserType(userAgent.getBrowser().getBrowserType().getName());
