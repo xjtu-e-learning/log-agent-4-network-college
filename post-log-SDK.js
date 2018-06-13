@@ -4,12 +4,6 @@
 function post_log_of_visit() {
     check_load_jquery()
     var params = {};
-    if (remote_ip_info['ret'] == 1) {
-        params.country = remote_ip_info['country'];
-        params.province = remote_ip_info['province'];
-        params.city = remote_ip_info['city'];
-        params.district = remote_ip_info['district'];
-    }
     if (document) {
         params.domain = document.domain || '';
         params.url = document.URL || '';
