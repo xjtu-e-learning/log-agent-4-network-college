@@ -6,3 +6,8 @@ spring:
       host: 127.0.0.1
       username: root
       authentication-database: admin
+
+
+logging:
+  level:
+    com: info
